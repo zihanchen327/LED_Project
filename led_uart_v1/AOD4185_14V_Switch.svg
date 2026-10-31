@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780">
+  <rect x="0" y="0" width="1200" height="780" fill="#ffffff"/>
+
+  <defs>
+    <marker id="dot" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5">
+      <circle cx="3.5" cy="3.5" r="3.5" fill="#1f2a37"/>
+    </marker>
+  </defs>
+
+  <style>
+    .title { font: 700 27px "Microsoft YaHei", sans-serif; fill: #17202a; }
+    .subtitle { font: 15px "Microsoft YaHei", sans-serif; fill: #5d6b7c; }
+    .label { font: 15px "Microsoft YaHei", sans-serif; fill: #17202a; }
+    .label-small { font: 13px "Microsoft YaHei", sans-serif; fill: #33404f; }
+    .pin { font: 700 14px "Microsoft YaHei", sans-serif; fill: #a33a3a; }
+    .wire { stroke: #1f2a37; stroke-width: 2.2; fill: none; }
+    .wire-red { stroke: #c0392b; stroke-width: 2.2; fill: none; }
+    .wire-green { stroke: #1e8e5a; stroke-width: 2.2; fill: none; }
+    .wire-blue { stroke: #2373b8; stroke-width: 2.2; fill: none; }
+    .wire-gray { stroke: #7c8793; stroke-width: 1.7; fill: none; }
+    .thin { stroke-width: 1.2; }
+  </style>
+
+  <text x="56" y="52" class="title">AOD4185 高边开关：STM32 控制 14V / 1A 电源通断</text>
+  <text x="58" y="82" class="subtitle">GPIO 输出高电平 = 输出 14V；GPIO 输出低电平 = 输出关断</text>
+
+  <!-- 14V input terminal -->
+  <circle cx="82" cy="180" r="16" fill="#ffffff" stroke="#1f2a37" stroke-width="2.5"/>
+  <text x="82" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#c0392b">+</text>
+  <text x="82" y="214" text-anchor="middle" class="label">DC_IN</text>
+  <text x="82" y="232" text-anchor="middle" class="label-small">+14V</text>
+
+  <path d="M 98 180 L 420 180" class="wire-red"/>
+
+  <!-- Input decoupling capacitors -->
+  <path d="M 150 180 L 150 260" class="wire"/>
+  <line x1="136" y1="260" x2="164" y2="260" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="136" y1="290" x2="164" y2="290" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 150 290 L 150 530" class="wire"/>
+  <text x="110" y="252" class="label-small">C1</text>
+  <text x="106" y="270" class="label-small">100uF</text>
+  <text x="106" y="288" class="label-small">25V</text>
+
+  <path d="M 205 180 L 205 260" class="wire"/>
+  <line x1="191" y1="260" x2="219" y2="260" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="191" y1="290" x2="219" y2="290" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 205 290 L 205 530" class="wire"/>
+  <text x="165" y="252" class="label-small">C2</text>
+  <text x="161" y="270" class="label-small">100nF</text>
+
+  <!-- AOD4185 P-channel MOSFET symbol -->
+  <path d="M 420 180 L 420 228" class="wire"/>
+  <path d="M 420 228 L 420 398" class="wire"/>
+  <path d="M 420 398 L 420 470" class="wire"/>
+  <line x1="355" y1="246" x2="355" y2="376" stroke="#1f2a37" stroke-width="2.8"/>
+  <path d="M 330 310 L 355 310" class="wire-green"/>
+  <line x1="420" y1="252" x2="435" y2="252" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="435" y1="252" x2="435" y2="284" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 428 284 L 435 276 L 442 284" fill="none" stroke="#1f2a37" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M 430 366 L 455 366 Q 470 366 470 326 Q 470 290 443 270 L 430 270" fill="none" stroke="#1f2a37" stroke-width="1.7"/>
+  <text x="498" y="330" class="label-small">Q1</text>
+  <text x="491" y="348" class="label-small">AOD4185</text>
+  <text x="491" y="366" class="label-small">P-CH</text>
+  <text x="355" y="200" class="pin">3=S</text>
+  <text x="355" y="438" class="pin">2=D</text>
+  <text x="293" y="305" class="pin">1=G</text>
+
+  <!-- Gate pull-up -->
+  <path d="M 260 180 L 260 249" class="wire"/>
+  <rect x="247" y="249" width="26" height="52" fill="#ffffff" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 260 301 L 260 310" class="wire"/>
+  <path d="M 260 310 L 330 310" class="wire-green"/>
+  <text x="217" y="280" class="label-small">R2</text>
+  <text x="213" y="298" class="label-small">10k</text>
+
+  <!-- Gate series resistor and NPN level shifter -->
+  <rect x="210" y="310" width="52" height="20" fill="#ffffff" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 208 310 L 262 310" class="wire-green"/>
+  <path d="M 210 310 L 210 380" class="wire-green"/>
+  <path d="M 208 320 L 262 320" stroke="#1f2a37" stroke-width="2.2"/>
+  <text x="161" y="326" class="label-small">R1</text>
+  <text x="157" y="344" class="label-small">100R</text>
+
+  <!-- Q2 NPN -->
+  <path d="M 210 380 L 210 500" class="wire"/>
+  <line x1="210" y1="380" x2="210" y2="420" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="188" y1="452" x2="232" y2="452" stroke="#1f2a37" stroke-width="2.8"/>
+  <line x1="210" y1="420" x2="188" y2="452" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="210" y1="420" x2="232" y2="452" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="210" y1="452" x2="210" y2="500" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 189 470 L 210 500 L 231 470" fill="none" stroke="#1f2a37" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M 210 500 L 240 500 L 240 530" class="wire"/>
+  <text x="164" y="408" class="label-small">Q2</text>
+  <text x="158" y="426" class="label-small">S8050</text>
+  <text x="158" y="444" class="label-small">NPN</text>
+  <text x="158" y="468" class="label-small">E</text>
+  <text x="116" y="450" class="label-small">B</text>
+  <text x="134" y="380" class="label-small">C</text>
+
+  <!-- STM32 GPIO and base resistor -->
+  <rect x="28" y="430" width="72" height="42" rx="7" fill="#eef4ff" stroke="#2e5fa3" stroke-width="2"/>
+  <text x="64" y="447" text-anchor="middle" class="label-small">STM32</text>
+  <text x="64" y="464" text-anchor="middle" class="label-small">GPIO</text>
+  <path d="M 100 451 L 120 451" class="wire-green"/>
+  <rect x="120" y="441" width="52" height="20" fill="#ffffff" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 120 451 L 172 451" class="wire-green"/>
+  <path d="M 172 451 L 188 451" class="wire-green"/>
+  <text x="109" y="480" class="label-small">R3</text>
+  <text x="105" y="498" class="label-small">1k</text>
+
+  <!-- Optional GPIO pull-down -->
+  <path d="M 64 472 L 64 494" class="wire-gray thin"/>
+  <rect x="51" y="494" width="26" height="52" fill="#ffffff" stroke="#7c8793" stroke-width="1.5"/>
+  <path d="M 64 546 L 64 560" class="wire-gray thin"/>
+  <path d="M 64 560 L 64 530" class="wire-gray thin"/>
+  <circle cx="64" cy="530" r="3" fill="#7c8793"/>
+  <text x="20" y="525" class="label-small">R4</text>
+  <text x="16" y="543" class="label-small">10k</text>
+
+  <!-- Ground rail and symbols -->
+  <path d="M 40 530 L 760 530" class="wire-blue"/>
+  <g stroke="#2373b8" stroke-width="2" fill="none">
+    <line x1="150" y1="530" x2="150" y2="545"/>
+    <line x1="205" y1="530" x2="205" y2="545"/>
+    <line x1="240" y1="530" x2="240" y2="545"/>
+  </g>
+  <g stroke="#2373b8" stroke-width="2" fill="none">
+    <line x1="135" y1="545" x2="165" y2="545"/>
+    <line x1="129" y1="553" x2="171" y2="553"/>
+    <line x1="123" y1="561" x2="177" y2="561"/>
+    <line x1="190" y1="545" x2="220" y2="545"/>
+    <line x1="184" y1="553" x2="226" y2="553"/>
+    <line x1="178" y1="561" x2="232" y2="561"/>
+    <line x1="225" y1="545" x2="255" y2="545"/>
+    <line x1="219" y1="553" x2="261" y2="553"/>
+    <line x1="213" y1="561" x2="267" y2="561"/>
+  </g>
+  <text x="120" y="580" class="label-small">GND</text>
+
+  <!-- Output load and flyback diode -->
+  <path d="M 420 470 L 700 470" class="wire-red"/>
+  <path d="M 700 470 L 700 420" class="wire"/>
+  <line x1="685" y1="420" x2="715" y2="420" stroke="#1f2a37" stroke-width="2.2"/>
+  <line x1="685" y1="455" x2="715" y2="455" stroke="#1f2a37" stroke-width="2.2"/>
+  <path d="M 700 455 L 700 495" class="wire"/>
+  <path d="M 700 495 L 700 530" class="wire"/>
+  <path d="M 680 495 L 700 515 L 720 495" fill="none" stroke="#1f2a37" stroke-width="2.2" stroke-linejoin="round"/>
+  <text x="735" y="438" class="label-small">D1</text>
+  <text x="729" y="456" class="label-small">SS34</text>
+  <text x="723" y="474" class="label-small">感性负载</text>
+  <text x="723" y="492" class="label-small">时接</text>
+
+  <circle cx="760" cy="470" r="16" fill="#ffffff" stroke="#1f2a37" stroke-width="2.5"/>
+  <text x="760" y="476" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2a37">+</text>
+  <text x="760" y="508" text-anchor="middle" class="label">OUT+</text>
+  <text x="760" y="526" text-anchor="middle" class="label-small">负载正极</text>
+
+  <circle cx="760" cy="530" r="16" fill="#ffffff" stroke="#1f2a37" stroke-width="2.5"/>
+  <text x="760" y="536" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2a37">-</text>
+  <text x="760" y="574" text-anchor="middle" class="label">OUT-</text>
+  <text x="760" y="592" text-anchor="middle" class="label-small">负载负极</text>
+  <path d="M 744 530 L 744 545 L 776 545 L 776 530" fill="none" stroke="#2373b8" stroke-width="2"/>
+
+  <!-- Physical package pinout -->
+  <g>
+    <rect x="840" y="120" width="300" height="190" rx="12" fill="#f7f9fb" stroke="#c8d0d8" stroke-width="2"/>
+    <text x="990" y="153" text-anchor="middle" font="700 18px 'Microsoft YaHei', sans-serif" fill="#17202a">AOD4185 TO-252 引脚</text>
+    <rect x="885" y="175" width="210" height="62" rx="6" fill="#dbe5ef" stroke="#5d6b7c" stroke-width="2"/>
+    <text x="990" y="201" text-anchor="middle" class="label-small">散热片背面 = D</text>
+    <text x="990" y="220" text-anchor="middle" class="label-small">引脚朝下、字面向你</text>
+
+    <path d="M 900 237 L 900 285" class="wire"/>
+    <path d="M 990 237 L 990 285" class="wire"/>
+    <path d="M 1080 237 L 1080 285" class="wire"/>
+    <circle cx="900" cy="285" r="6" fill="#1f2a37"/>
+    <circle cx="990" cy="285" r="6" fill="#1f2a37"/>
+    <circle cx="1080" cy="285" r="6" fill="#1f2a37"/>
+    <text x="900" y="306" text-anchor="middle" class="label-small">1 = G</text>
+    <text x="990" y="306" text-anchor="middle" class="label-small">2 = D</text>
+    <text x="1080" y="306" text-anchor="middle" class="label-small">3 = S</text>
+  </g>
+
+  <!-- Design notes -->
+  <g>
+    <rect x="840" y="340" width="300" height="250" rx="12" fill="#f7f9fb" stroke="#c8d0d8" stroke-width="2"/>
+    <text x="862" y="372" font="700 18px 'Microsoft YaHei', sans-serif" fill="#17202a">接线要点</text>
+    <text x="862" y="401" class="label-small">- AOD4185 的 S 接 +14V，D 接负载正极。</text>
+    <text x="862" y="424" class="label-small">- 散热片与 2 脚 D 相通，不要接 GND。</text>
+    <text x="862" y="447" class="label-small">- GPIO 高电平导通；低电平关断。</text>
+    <text x="862" y="470" class="label-small">- R2 保证上电默认关断，不能省略。</text>
+    <text x="862" y="493" class="label-small">- 感性负载建议加 D1 SS34。</text>
+    <text x="862" y="516" class="label-small">- 1A 时约 12mW，发热很小。</text>
+    <text x="862" y="545" class="label-small">- 14V 电源与 STM32 共地。</text>
+  </g>
+
+  <text x="56" y="620" class="subtitle">信号回路：STM32 GPIO -> R3 1k -> Q2 基极；Q2 导通后把 Q1 栅极拉到约 0.2V，使 Vgs 约 -13.8V，Q1 饱和导通。</text>
+  <text x="58" y="648" class="subtitle">截止时 R2 把 Q1 栅极拉回 14V，Vgs = 0V，输出关断。</text>
+</svg>
