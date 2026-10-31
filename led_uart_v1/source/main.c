@@ -1,6 +1,7 @@
-/******************************************************************************
- * main.c - HC32F005 LED 闪烁 + UART1 printf
+﻿/******************************************************************************
+ * main.c - HC32F005 LED 流水灯 + UART1 printf
  *
+ * LED: 绿 P24 / 蓝 P25 / 黄 P26，低电平点亮
  * UART1: TX = P35, RX = P36, 115200-8-N-1
  ******************************************************************************/
 #include "ddl.h"
@@ -69,19 +70,28 @@ static void App_UartInit(void)
 
 int32_t main(void)
 {
-    uint32_t u32Tick = 0;
+    static const char * const s_pcLedName[3] = { "GREEN(P24)", "BLUE(P25)", "YELLOW(P26)" };
+    uint32_t u32Tick = 0u;
+    uint8_t  u8Led = 0u;
 
     Led_Init();
     App_UartInit();
 
-    printf("HC32F005C6UA LED + UART demo start\n");
+    printf("HC32F005 LED + UART demo start\n");
 
     while (1)
     {
+        Led_AllOff();
+        Led_On(u8Led);
         u32Tick++;
-        Led_Toggle();
-        printf("[%u] LED toggle\n", (unsigned)u32Tick);
+        printf("[%u] LED %s ON\n", (unsigned)u32Tick, s_pcLedName[u8Led]);
         delay1ms(500);
+
+        u8Led++;
+        if (u8Led >= 3u)
+        {
+            u8Led = 0u;
+        }
     }
 }
 
