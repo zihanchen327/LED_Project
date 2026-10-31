@@ -74,7 +74,7 @@ int32_t main(void)
     Led_Init();
     App_UartInit();
 
-    printf("HC32F005 LED + UART demo start\n");
+    printf("HC32F005C6UA LED + UART demo start\n");
 
     while (1)
     {
