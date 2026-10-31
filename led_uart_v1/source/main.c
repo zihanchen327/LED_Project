@@ -81,7 +81,7 @@ int32_t main(void)
         u32Tick++;
         Led_Toggle();
         printf("[%u] LED toggle\n", (unsigned)u32Tick);
-        delay1ms(1000);
+        delay1ms(500);
     }
 }
 
